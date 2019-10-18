@@ -1,43 +1,49 @@
 package com.jmrsoftware.csvtobeanapplication.model;
 
 import com.opencsv.bean.CsvBindByName;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import com.opencsv.bean.CsvBindByPosition;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity
+@NoArgsConstructor
+@Data
 public class RealEstateTransaction {
     @Id
     private Long id;
-    @CsvBindByName
+    @CsvBindByPosition(position = 0)
     private String street;
-    @CsvBindByName
+    @CsvBindByPosition(position = 1)
     private String city;
-    @CsvBindByName
+    @CsvBindByPosition(position = 2)
     private int zip;
-    @CsvBindByName
+    @CsvBindByPosition(position = 3)
     private String state;
-    @CsvBindByName
+    @CsvBindByPosition(position = 4)
     private int beds;
-    @CsvBindByName
+    @CsvBindByPosition(position = 5)
     private int baths;
-    @CsvBindByName
+    @CsvBindByPosition(position = 6)
     private int sq_ft;
-    @CsvBindByName
+    @CsvBindByPosition(position = 7)
     private String type;
-    @CsvBindByName
-    private Date sale_date;
-    @CsvBindByName
+    @CsvBindByPosition(position = 8)
+    private LocalDate sale_date;
+    @CsvBindByPosition(position = 9)
     private Double price;
-    @CsvBindByName
+    @CsvBindByPosition(position = 10)
     private Float latitude;
-    @CsvBindByName
+    @CsvBindByPosition(position = 11)
     private Float longitude;
+
+    public RealEstateTransaction(String s, String el_dorado_hills, int i, String ca, int i1, int i2, int i3, String residential, LocalDateTime dateTime, int i4, double v, double v1) {
+    }
 }
