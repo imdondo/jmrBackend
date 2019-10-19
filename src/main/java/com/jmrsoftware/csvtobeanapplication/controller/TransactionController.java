@@ -2,6 +2,7 @@ package com.jmrsoftware.csvtobeanapplication.controller;
 
 import com.jmrsoftware.csvtobeanapplication.model.RealEstateTransaction;
 import com.jmrsoftware.csvtobeanapplication.service.TransactionService;
+import com.jmrsoftware.csvtobeanapplication.service.TransactionServiceImpl;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,7 @@ import java.util.List;
 public class TransactionController {
 
     @Autowired
-    TransactionService transactionService;
+    TransactionServiceImpl transactionService;
 
     @GetMapping(path = "/transactions", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<RealEstateTransaction> getList() throws FileNotFoundException {
