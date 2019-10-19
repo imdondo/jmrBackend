@@ -1,15 +1,11 @@
 package com.jmrsoftware.csvtobeanapplication.model;
 
-import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 import lombok.*;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
 
 @Getter
 @Setter

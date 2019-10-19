@@ -4,15 +4,7 @@ import com.jmrsoftware.csvtobeanapplication.model.RealEstateTransaction;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SmartCsvReaderTest {
     @Test
