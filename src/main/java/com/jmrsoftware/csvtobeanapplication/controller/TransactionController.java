@@ -28,7 +28,7 @@ public class TransactionController {
     TransactionService transactionService;
 
     @GetMapping(path = "/transactions", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public List<RealEstateTransaction> retrieveAllStudents() throws FileNotFoundException {
+    public List<RealEstateTransaction> getList() throws FileNotFoundException {
         return transactionService.getList();
     }
 
