@@ -25,18 +25,26 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<RealEstateTransaction> getList() throws FileNotFoundException {
-
-//        List<RealEstateTransaction> transactions = (List<RealEstateTransaction>) transactionRepository.findAll();
         List<RealEstateTransaction> transactions = (List<RealEstateTransaction>) smartCsvReader.readCsvFile();
-
         return transactions;
     }
 
     @Override
-    public synchronized RealEstateTransaction updateList(RealEstateTransaction realEstateTransaction) throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, InterruptedException, IOException {
-//        List<RealEstateTransaction> list = transactionRepository.save( realEstateTransaction);
-        smartCsvWriter.appendCsvFile(realEstateTransaction);
-        return realEstateTransaction;
+    public RealEstateTransaction updateList(RealEstateTransaction realEstateTransaction) throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, InterruptedException, IOException {
+        RealEstateTransaction newRet = new RealEstateTransaction();
+        newRet.setStreet(realEstateTransaction.getStreet());
+        newRet.setCity(realEstateTransaction.getCity());
+        newRet.setZip(realEstateTransaction.getZip());
+        newRet.setState(realEstateTransaction.getState());
+        newRet.setBeds(realEstateTransaction.getBeds());
+        newRet.setBaths(realEstateTransaction.getBaths());
+        newRet.setSq_ft(realEstateTransaction.getSq_ft());
+        newRet.setType(realEstateTransaction.getType());
+//        newRet.getSale_date(realEstateTransaction.getSale_date());
+        newRet.setPrice(realEstateTransaction.getPrice());
+        newRet.setLatitude(realEstateTransaction.getLatitude());
+        newRet.setLongitude(realEstateTransaction.getLongitude());
+        smartCsvWriter.appendCsvFile(newRet);
+        return newRet;
     }
-
 }

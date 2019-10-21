@@ -24,7 +24,6 @@ class SmartCsvWriterTest {
         realEstateTransaction.setBaths(1);
         realEstateTransaction.setSq_ft(836);
         realEstateTransaction.setType("Residential");
-//        LocalDateTime dateTime= LocalDateTime.of(2017, Month.FEBRUARY,3,6,30,40,50000);
         LocalDate dateTime = LocalDate.of(2017, Month.FEBRUARY, 3);
         realEstateTransaction.setSale_date(dateTime);
         realEstateTransaction.setPrice((double) 59222);

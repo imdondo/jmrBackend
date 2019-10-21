@@ -14,7 +14,7 @@ public interface TransactionService {
 
     public List<RealEstateTransaction> getList() throws FileNotFoundException;
 
-
     RealEstateTransaction updateList(RealEstateTransaction realEstateTransaction) throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, InterruptedException, IOException;
-
+//    RealEstateTransaction save(RealEstateTransaction realEstateTransaction);
+//    List<RealEstateTransaction> findAll();
 }

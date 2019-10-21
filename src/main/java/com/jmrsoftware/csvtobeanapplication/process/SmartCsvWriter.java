@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @ComponentScan
 public class SmartCsvWriter {
-    public void appendCsvFile(RealEstateTransaction realEstateTransaction) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, InterruptedException {
+    public RealEstateTransaction appendCsvFile(RealEstateTransaction realEstateTransaction) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, InterruptedException {
 //        Writer writer  = new FileWriter("src/main/resources/realestatetransactions.csv");
         CSVWriter writer = new CSVWriter(new FileWriter("src/main/resources/realestatetransactions.csv", true));
 
@@ -28,6 +28,7 @@ public class SmartCsvWriter {
         beanToCsv.getCapturedExceptions();
         writer.close();
 
+        return realEstateTransaction;
     }
 }
 
