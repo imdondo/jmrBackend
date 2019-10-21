@@ -5,40 +5,28 @@ import com.jmrsoftware.csvtobeanapplication.model.RealEstateTransaction;
 import com.jmrsoftware.csvtobeanapplication.service.TransactionService;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
-import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static net.bytebuddy.matcher.ElementMatchers.is;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(RealEstateTransaction.class)
@@ -216,35 +204,35 @@ public class TransactionControllerTest {
                 .isEqualTo(realEstateTransaction2.getStreet());
     }
 
-//    @Test
-//    public void updateList_Positive() throws Exception {
-//        RealEstateTransaction realEstateTransaction1 = new RealEstateTransaction();
-//        realEstateTransaction1.setStreet("3882 YELLOWSTONE LN");
-//        realEstateTransaction1.setCity("EL DORADO HILLS");
-//        realEstateTransaction1.setZip(95762);
-//        realEstateTransaction1.setState("CA");
-//        realEstateTransaction1.setBeds(3);
-//        realEstateTransaction1.setBaths(2);
-//        realEstateTransaction1.setSq_ft(1362);
-//        realEstateTransaction1.setType("Residential");
-//        realEstateTransaction1.setSale_date(LocalDate.of(2017, 2, 13));
-//        realEstateTransaction1.setPrice(235738.000);
-//        realEstateTransaction1.setLatitude(38.655245f);
-//        realEstateTransaction1.setLatitude(-121.075915f);
-//        Behavior.set(transactionService).returnSame();
-//        String transactionContent = mapper.writeValueAsString(realEstateTransaction1);
-//        System.out.println("Json Content" + realEstateTransaction1);
-//        System.out.println("This is the third "+ transactionContent);
-//        mvc
-//                .perform(post("/transactions")
-//                        .content(transactionContent)
-//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-//                .andExpect(status().isCreated())
-//                .andExpect((ResultMatcher) content().contentType(MediaType.APPLICATION_JSON_VALUE))
-//                .andExpect((ResultMatcher) content().json(transactionContent));
-//        given(transactionService.updateList(Mockito.any())).willReturn(realEstateTransaction1);
-//
-//    }
+    @Test
+    public void updateList_Positive() throws Exception {
+        RealEstateTransaction realEstateTransaction1 = new RealEstateTransaction();
+        realEstateTransaction1.setStreet("3882 YELLOWSTONE LN");
+        realEstateTransaction1.setCity("EL DORADO HILLS");
+        realEstateTransaction1.setZip(95762);
+        realEstateTransaction1.setState("CA");
+        realEstateTransaction1.setBeds(3);
+        realEstateTransaction1.setBaths(2);
+        realEstateTransaction1.setSq_ft(1362);
+        realEstateTransaction1.setType("Residential");
+        realEstateTransaction1.setSale_date(LocalDate.of(2017, 2, 13));
+        realEstateTransaction1.setPrice(235738.000);
+        realEstateTransaction1.setLatitude(38.655245f);
+        realEstateTransaction1.setLatitude(-121.075915f);
+        Behavior.set(transactionService).returnSame();
+        String transactionContent = mapper.writeValueAsString(realEstateTransaction1);
+        System.out.println("Json Content" + realEstateTransaction1);
+        System.out.println("This is the third "+ transactionContent);
+
+        when(transactionService.updateList(realEstateTransaction1)).thenReturn(realEstateTransaction1);
+        // when
+        List<RealEstateTransaction> result = transactionService.getList();
+
+        // then
+        assertThat(result.size()).isEqualTo(0);
+        given(transactionService.updateList(Mockito.any())).willReturn(realEstateTransaction1);
+
+    }
     @Test
     public void testGetList() throws FileNotFoundException {
         // given

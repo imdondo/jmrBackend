@@ -3,7 +3,6 @@ package com.jmrsoftware.csvtobeanapplication.service;
 import com.jmrsoftware.csvtobeanapplication.model.RealEstateTransaction;
 import com.jmrsoftware.csvtobeanapplication.process.SmartCsvReader;
 import com.jmrsoftware.csvtobeanapplication.process.SmartCsvWriter;
-import com.jmrsoftware.csvtobeanapplication.repository.TransactionRepository;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import java.util.List;
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
-    @Autowired
-    TransactionRepository transactionRepository;
     @Autowired
     TransactionService transactionService;
     SmartCsvReader smartCsvReader;
